@@ -1,182 +1,126 @@
-# VR App Development Report
+# VR Environment Design Report
 
-## Introduction
+## Concept Overview
 
-This VR application was developed as a mobile-first fantasy adventure experience built in Unity 6 for Google Cardboard. The final app places the player inside a stylized world where they move through the environment, complete crystal-based trials, unlock a castle gate, survive a boss encounter, and finally reach an ending sequence with performance feedback.
+The chosen theme for this VR project is a **fantasy first-person adventure** called **The Gate**. The user begins in an enchanted forest and must explore a ruined magical landscape, complete short environmental trials, collect crystals, unlock a castle gate, and survive a final confrontation beyond it. The experience is designed for mobile VR, so the concept focuses on strong atmosphere, clear goals, and simple but meaningful interactions rather than overly complex controls.
 
-The project was designed to balance three goals:
+The purpose of the user being in the environment is straightforward: they are an adventurer trying to restore power to a sealed gate and escape the cursed valley beyond the forest. Their main goals are to move through the world safely, discover points of interest, collect enough magical crystals to unlock progression, and complete the final encounter that marks the end of the journey. This gives the player both a narrative reason to be in the space and a practical gameplay objective from the start.
 
-1. create a complete VR gameplay loop instead of a simple tech demo,
-2. keep the interaction model simple enough for mobile VR hardware,
-3. make the experience readable and comfortable for the player.
+## Environment Theme, Locations, and Mood
 
-For that reason, I focused on a clear progression structure, lightweight but meaningful interaction mechanics, and systems that support immersion without overcomplicating the controls.
+Because the experience is built around a fantasy quest, the world includes locations that feel mysterious, ancient, and slightly dangerous. The main areas are:
 
-## What I Developed
+- a forest entry path that introduces movement and scale,
+- a crystal clearing that teaches the collection objective,
+- a ruined bridge or platforming section,
+- a trial arena with moving or elevated surfaces,
+- a castle gate courtyard that acts as a progression checkpoint,
+- a boss arena or ritual space beyond the gate.
 
-The app is built around one main playable scene, `Assets/Scenes/Latest Scene.unity`, which acts as the full game world. Inside that scene, the player progresses through a sequence of connected gameplay systems:
+The objects in the environment support this theme consistently. These include glowing crystals, stone arches, torches, gates, pressure mechanisms, ruined towers, wooden bridges, floating platforms, pickup objects such as stones or magical orbs, and a central weak-point object in the final arena. Decorative objects such as mushrooms, lanterns, roots, skulls, banners, and broken masonry help reinforce the abandoned fantasy setting.
 
-- VR entry and mobile setup using Google Cardboard.
-- First-person player movement with head-directed navigation.
-- Object pickup, carrying, dropping, and throwing.
-- Teleport-based transitions between challenge areas.
-- Timed crystal trials.
-- Crystal collection as the main progress mechanic.
-- A castle gate that opens only after the collection requirement is met.
-- A boss fight built around damaging a central weak point with thrown objects.
-- Dynamic HUD, audio, and end-of-game results feedback.
+The mood should feel magical but tense. Lighting would shift from softer natural light in the forest to colder, more dramatic lighting near the gate and boss arena. Warm torchlight, crystal glow, and selective fog would help guide the user without overwhelming them. The colour scheme would use greens and earthy browns in the opening area, blue and cyan glow around crystals and portals, and darker grey-red tones near the final confrontation. Ambient sound is equally important: wind through trees, distant rumbling, magical humming near crystals, gate creaks, echoing footsteps on stone, and more intense music in the final area. Inspiration comes from fantasy forests, ruined castles, portal effects, and soundtracks that move from quiet exploration into suspense.
 
-In practice, the app functions like a compact VR adventure level rather than a disconnected set of experiments. The player is always working toward a visible goal: collect crystals, clear trials, open the path forward, defeat the boss, and escape.
+## What Makes the Theme Interesting
 
-## How I Built It
+The environment becomes interesting when it gives the player a sense of discovery and progression rather than just being a place to walk through. Several features support that:
 
-### 1. VR platform and project setup
+- visible landmarks such as the giant castle gate and glowing crystals,
+- changes in the world when progress is made, such as the gate opening,
+- short trials that break up exploration with focused challenges,
+- a final encounter that reuses previously learned mechanics,
+- environmental storytelling through ruins, magical devices, and broken structures.
 
-I used Unity 6 (`6000.3.8f1`) and configured the project to support mobile VR through the Google Cardboard XR plugin. This choice made it possible to target smartphone-based VR while still using Unity's XR pipeline. The project also includes the Input System, UI, terrain tools, post-processing, URP/HDRP packages, and Android-focused support.
+This design keeps the player curious because each area suggests that something happened there before the player arrived. The gate hints at a locked destination, the crystals suggest a lost source of power, and the arena beyond the gate creates anticipation. Even simple mechanics feel more engaging when they have a clear place in the world and lead to a visible outcome.
 
-The `CardboardStartup` script handles the startup sequence by:
+## Navigation Through the Environment
 
-- preventing the phone from sleeping,
-- setting brightness high for better headset visibility,
-- reloading Cardboard device parameters,
-- starting XR automatically.
+Navigation is planned as first-person movement with head-directed orientation, since this is intuitive for VR and works well with a fantasy exploration theme. The player primarily walks through the environment, but the route includes enough variation to keep movement interesting. This can include:
 
-This was important because mobile VR needs a reliable startup flow. If VR does not initialize cleanly, the player immediately loses immersion or may not even be able to begin the experience correctly.
+- standard walking along forest paths and ruins,
+- jumping onto low platforms or broken stone blocks,
+- riding moving platforms across short gaps,
+- stepping through teleporters or portals to enter trial spaces,
+- carefully crossing narrow bridges or elevated walkways.
 
-### 2. Player movement and input
+Movement should be controlled and readable. Large open sprint sections or rapid forced motion should be avoided because they can increase motion sickness, especially in mobile VR. Teleporters work well as a comfort-friendly way to move the user between major challenge spaces without requiring long or disorienting travel. The route should also loop visually around the gate so the player always understands where the main destination is.
 
-Player locomotion is managed through `PlayerMovement.cs`, using a `CharacterController`. I combined standard first-person movement with VR-specific orientation logic:
+## Interaction Design
 
-- movement direction is based on the headset/camera forward vector,
-- vertical camera pitch is clamped to avoid unnatural over-rotation,
-- gravity and jumping are applied through the controller,
-- sprint and camera stick look are available when a controller is connected,
-- a simple touch fallback is used for Android/Cardboard play.
+Interaction is one of the most important parts of the environment because it makes the world feel responsive. In this concept, interactions are built around a small set of actions that can be reused throughout the experience:
 
-I also created a shared input layer in `GameInput.cs`, which reads input from gamepad, joystick, keyboard, or mobile touch paths depending on what is available.
+- collecting crystals by moving into them,
+- opening gates or activating devices after objectives are met,
+- pressing buttons or approaching portals to begin trials,
+- picking up, carrying, dropping, and throwing objects,
+- triggering sounds, particles, or animations when the player enters certain areas.
 
-I chose this approach because VR controls must feel simple and predictable. Instead of building a complicated gesture-heavy interaction model, I used a hybrid control design:
+These interactions can be activated in different ways depending on the situation:
 
-- controller support gives better testing and faster navigation during development,
-- Cardboard trigger and touch support keeps the app usable on mobile VR hardware,
-- head-relative movement helps the player move in the direction they are looking, which is more intuitive in VR.
+- **movement-based**: walking into a crystal to collect it or stepping onto a moving platform,
+- **proximity-based**: entering a trigger zone that starts music, activates a boss, or opens a door,
+- **physics-based**: throwing an object at a weak point or target,
+- **user-initiated**: looking at or selecting an object to pick it up,
+- **time-based**: starting a trial countdown once the player enters a specific space.
 
-### 3. Core interaction: pickup and throw system
+Examples that fit the theme include magical crystals chiming when collected, an ancient gate grinding open when enough power has been restored, a bridge platform shifting when stepped on, and a boss weak point flashing when struck correctly. These interactions are thematically appropriate because they feel like natural parts of a magical ruin rather than arbitrary game mechanics.
 
-One of the central mechanics is object interaction, implemented in `PickUpScript.cs`. The player can:
+## Comfort, Clarity, and Suitability
 
-- raycast forward to detect pickup objects,
-- grab valid rigidbodies tagged as pickup items,
-- hold them in front of the player,
-- drop them,
-- throw them forward to activate targets or damage enemies.
+The interactions and movement choices must make sense inside the environment and must also be comfortable in VR. In this concept, most actions are easy to understand because they follow visual logic: glowing crystals are collectible, portals are traversable, gates are barriers, and highlighted objects can be picked up or used. This helps reduce ambiguity.
 
-The script temporarily changes the object's gravity, damping, collision handling, and velocity so it behaves correctly while being carried. It also ignores collisions with the player while the item is held to prevent jitter and unwanted physics issues.
+Fatigue is also an important concern. Requiring constant crouching, repeated head snapping, or long periods of waving motions would not be suitable, especially for a mobile VR assignment. For that reason, the interaction set should stay light and repeatable. Looking, walking, picking up, and throwing are enough to create engagement without exhausting the user.
 
-I developed the app this way because throwing objects is one of the easiest and most satisfying interaction patterns in VR. It gives the player a direct sense of agency without requiring complex hand-tracking or advanced controller hardware. It also lets one mechanic serve multiple purposes:
+Motion sickness must be managed carefully. Fast forced movement, sudden camera shifts, uncontrolled falling, and spinning platforms can make the user uncomfortable very quickly. To reduce this risk:
 
-- solving environmental interactions,
-- triggering trial targets,
-- damaging the boss,
-- making the player feel physically present in the world.
+- movement speed should stay moderate,
+- jumps should be short and readable,
+- teleporters should handle longer transitions,
+- arenas should have boundaries and reset zones,
+- the player should always have a clear forward direction.
 
-### 4. Progression structure and trials
+If these comfort rules are followed, the experience can still feel adventurous without becoming unpleasant.
 
-To make the game feel purposeful, I built progression around trials and crystal collection.
+## Rough Environment Map
 
-The timing system is handled through `TrialTimerSystem.cs` and `GameManager.cs`. When the player enters certain teleports, the `Teleport` script starts a trial using a `trialId` such as `Trial_1` or `Trial_2`. The trial timer updates the HUD in real time and stores the final times when objectives are completed.
+The map below shows the overall layout and the main places of interest:
 
-`CrystalCollector.cs` tracks how many crystals the player has collected, updates the UI, and can complete a trial once the required crystal threshold is reached.
+```text
+ [Start]
+    |
+    v
+ [Forest Path] ----> [Crystal Clearing]
+    |                     |
+    |                     v
+    |               [Trial Portal 1]
+    |                     |
+    v                     v
+ [Ruined Bridge] --> [Platform Trial Arena]
+    |                     |
+    +----------+----------+
+               |
+               v
+        [Castle Courtyard]
+               |
+      [Locked Gate / Crystal Check]
+               |
+               v
+         [Boss Arena / Ritual Site]
+               |
+               v
+            [End Zone]
+```
 
-This structure was used because it creates short-term and long-term goals at the same time:
+Important interaction and object locations:
 
-- short-term goal: finish the immediate challenge quickly,
-- long-term goal: collect all required crystals and progress to the castle.
-
-That combination gives the player something to focus on moment by moment while still feeling that every area contributes to a bigger journey.
-
-### 5. Environment logic and fail-safe design
-
-I added environmental systems to make traversal more reliable and less frustrating:
-
-- `MovingPlatform.cs` carries the player correctly while standing on the platform.
-- `TrialArenaSafetyInstaller.cs` creates runtime safety colliders and reset zones.
-- a fall reset is used for Trial 1 so the player can be returned to the correct entry point instead of getting stuck.
-- Trial 2 receives generated arena boundary walls to keep the encounter contained.
-
-I made these choices because VR discomfort often increases when players become disoriented, trapped, or forced to restart manually. Safety systems protect the flow of the experience and reduce frustration. In a VR app, comfort and recovery design are just as important as the main mechanic.
-
-### 6. Gate unlock and world progression
-
-`CastleGateController.cs` listens for the "all crystals collected" event and then animates the gate open with sound and optional object activation. The gate only opens once the player has completed the required progression.
-
-This was done to make progress visible in the world itself, not just in UI text. A large animated gate is a strong environmental reward because it turns the player's achievement into a physical change in the environment. In VR, world feedback is usually stronger than abstract menu feedback.
-
-### 7. Boss encounter
-
-The boss sequence begins through `BossFightTrigger.cs`, which activates the boss state and enables or disables scene objects when the player enters the encounter zone.
-
-The actual damage logic is handled by either `BossHealth.cs` or `GemHealth.cs`, depending on the setup. In the current scene, `GemHealth` appears to be the main active boss-health system. The player damages the boss by hitting the weak point with objects tagged `canPickUp`. The boss can also attack back using `GemShooter.cs`, which procedurally fires glowing projectiles toward the player and uses `ProjectileImpact.cs` for collision effects and damage delivery.
-
-I designed the boss this way for several reasons:
-
-- it reuses the pickup-and-throw mechanic instead of introducing a completely new combat system,
-- it makes the weak point clear and readable,
-- it creates a progression from exploration to action,
-- it adds tension at the end of the experience without needing advanced AI.
-
-This was a deliberate design choice: instead of trying to build a very complex enemy, I built a focused encounter where the challenge comes from timing, positioning, and using an already learned mechanic under pressure.
-
-### 8. HUD, audio, and feedback systems
-
-The `HUDManager` controls:
-
-- crystal count,
-- trial timer,
-- boss health display.
-
-The `EndScreenUIController` presents:
-
-- crystals collected,
-- total game time,
-- total combined trial time,
-- individual trial results,
-- basic completion feedback.
-
-Audio is managed globally with `AudioDirector.cs` and `AudioLibrary.cs`. Music changes between ambient exploration, trial music, and boss music depending on the current gameplay state. Additional sound effects support jumping, throwing, footsteps, gate movement, and boss death.
-
-I included these systems because feedback is essential in VR. Since the player is surrounded by the world, they need constant confirmation that their actions matter. The HUD provides objective progress, while audio supports emotional pacing and environmental presence. Together, they make the app feel more complete and responsive.
-
-## Why I Developed the App This Way
-
-The overall design approach was based on simplicity, clarity, and immersion.
-
-First, I chose a fantasy exploration structure because it fits VR well. Castles, crystals, gates, and boss arenas are visually clear and naturally support environmental storytelling. The player immediately understands that crystals are important, the castle is a destination, and the boss is a final challenge.
-
-Second, I reused one main interaction mechanic across the whole experience: pickup and throw. This was intentional. In VR, every extra mechanic adds learning cost and can confuse the player. By reusing the same interaction for puzzles, traversal support, and combat, the app becomes easier to learn and more cohesive.
-
-Third, I designed around the limits of mobile VR. Google Cardboard does not provide the same interaction depth as high-end VR hardware, so the app needed controls that still worked with simple input. That is why the experience relies on:
-
-- gaze/head-directed movement,
-- simple trigger-based interaction,
-- teleport transitions,
-- readable objective design,
-- controlled encounter spaces.
-
-Fourth, I paid attention to comfort and reliability. Features like bounded arenas, reset triggers, stable object-holding physics, and limited interaction complexity help prevent the player from getting lost, stuck, or overwhelmed. That is especially important in VR, where confusion affects both usability and comfort.
-
-Finally, I wanted the app to feel like a full mini-game rather than a collection of unrelated prototypes. The timing system, crystal counter, gate unlock, boss fight, and end screen all support that goal. They give the player a beginning, middle, and end, which makes the project stronger as an assignment and more satisfying as an experience.
+- crystals are placed in the clearing, trial spaces, and near elevated landmarks,
+- portals are used to move into challenge arenas,
+- pickup objects are placed near targets and in the boss arena,
+- the locked gate is the major visual objective in the middle-to-late experience,
+- the final arena contains the boss weak point and combat/projectile hazards.
 
 ## Conclusion
 
-This VR app was developed as a complete, mobile-friendly fantasy adventure built around accessible VR interaction. The design combines exploration, timed trials, crystal collection, environmental progression, and a final boss encounter into one connected gameplay loop.
+This VR environment is designed as a compact fantasy adventure that combines exploration, atmosphere, collection, and simple interaction into one consistent experience. The player enters the world with a clear goal, moves through themed locations that support that goal, interacts with objects in ways that make sense for the setting, and experiences visible progression as the environment changes in response to their actions.
 
-I developed it this way because the project needed to be practical for Cardboard hardware while still demonstrating core VR design principles:
-
-- presence through first-person immersion,
-- interaction through object manipulation,
-- progression through visible world changes,
-- feedback through UI, sound, and results,
-- comfort through controlled movement and safety systems.
-
-Overall, the final result reflects a deliberate design process: keep the controls simple, make the objectives clear, reuse mechanics intelligently, and build an experience that feels complete from start to finish.
+Most importantly, the concept is suitable for VR because it balances immersion with comfort. The world is interesting without being overcrowded, the interactions are varied without being confusing, and the navigation methods support both usability and presence. As a result, the final design is not just a collection of features, but a cohesive VR experience with a beginning, middle, and end.
