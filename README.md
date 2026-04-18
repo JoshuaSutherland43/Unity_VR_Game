@@ -3,6 +3,7 @@
 ---
 ## 🌌 Concept Overview
 
+---
 The chosen theme for this VR project is a **fantasy first-person adventure** called **The Gate**. The user begins in an enchanted forest and must explore a ruined magical landscape, complete short environmental trials, collect crystals, unlock a castle gate, and survive a final confrontation beyond it. The experience is designed for mobile VR, so the concept focuses on strong atmosphere, clear goals, and simple but meaningful interactions rather than overly complex controls.
 
 The purpose of the user being in the environment is straightforward: they are an adventurer trying to restore power to a sealed gate and escape the cursed valley beyond the forest.
@@ -18,6 +19,7 @@ The purpose of the user being in the environment is straightforward: they are an
 ---
 ## 🌿 Environment Theme, Locations, and Mood
 
+---
 Because the experience is built around a fantasy quest, the world includes locations that feel mysterious, ancient, and slightly dangerous.
 <img width="702" height="588" alt="Screenshot 2026-04-08 233721" src="https://github.com/user-attachments/assets/8e639710-1559-4633-a2cb-ba5a0a698c3d" />
 
@@ -29,7 +31,7 @@ Because the experience is built around a fantasy quest, the world includes locat
 - trial arena with moving or elevated surfaces  
 - castle gate courtyard (progression checkpoint)  
 - boss arena or ritual space beyond the gate 
-<img width="702" height="588" alt="Screenshot 2026-04-08 233409" src="https://github.com/user-attachments/assets/52c538e7-425c-4ab7-9c8e-c7c38da20b9d" />
+<img width="800" height="450" alt="Screenshot 2026-04-08 233409" src="https://github.com/user-attachments/assets/52c538e7-425c-4ab7-9c8e-c7c38da20b9d" />
 
 ---
 **Environmental Objects:**
@@ -41,9 +43,9 @@ Because the experience is built around a fantasy quest, the world includes locat
 <img width="702" height="588" alt="Screenshot 2026-04-08 233803" src="https://github.com/user-attachments/assets/3e243ba5-65e5-4503-a928-712f408a92b9" />
 
 ---
-
 ## ✨ What Makes the Theme Interesting
 
+---
 The environment becomes interesting when it gives the player a sense of discovery and progression rather than just being a place to walk through.
 
 **Key Features:**
@@ -54,9 +56,9 @@ The environment becomes interesting when it gives the player a sense of discover
 - environmental storytelling through ruins and structures
   
 ---
-
 ## 🧭 Navigation Through the Environment
 
+---
 Navigation is planned as first-person movement with head-directed orientation.
 
 **Movement Includes:**
