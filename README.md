@@ -1,4 +1,4 @@
-<img width="1543" height="848" alt="Screenshot 2026-04-08 233803" src="https://github.com/user-attachments/assets/e12e2a67-8a13-4591-bf9d-4427a07d3045" /><img width="1446" height="855" alt="Screenshot 2026-04-08 233409" src="https://github.com/user-attachments/assets/41f0587f-8b7b-494b-a93d-7e560a31df7e" /># VR Environment Design Report
+# VR Environment Design Report
 
 ## Concept Overview
 
@@ -10,7 +10,6 @@ The purpose of the user being in the environment is straightforward: they are an
 ## Environment Theme, Locations, and Mood
 <img width="1773" height="837" alt="Screenshot 2026-04-08 233721" src="https://github.com/user-attachments/assets/8e639710-1559-4633-a2cb-ba5a0a698c3d" />
 Because the experience is built around a fantasy quest, the world includes locations that feel mysterious, ancient, and slightly dangerous. The main areas are:
-
 - a forest entry path that introduces movement and scale,
 - a crystal clearing that teaches the collection objective,
 - a ruined bridge or platforming section,
