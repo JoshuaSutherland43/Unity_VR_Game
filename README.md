@@ -22,10 +22,10 @@ The purpose of the user being in the environment is straightforward: they are an
 ---
 Because the experience is built around a fantasy quest, the world includes locations that feel mysterious, ancient, and slightly dangerous.
 
-```
-<img width="800" height="450" alt="Screenshot 2026-04-08 233721" src="https://github.com/user-attachments/assets/8e639710-1559-4633-a2cb-ba5a0a698c3d" />
+--
+<img width="650" height="300" alt="Screenshot 2026-04-08 233721" src="https://github.com/user-attachments/assets/8e639710-1559-4633-a2cb-ba5a0a698c3d" />
 
-```
+
 ---
 **Main Areas:**
 - forest entry path (introduces movement and scale)  
@@ -33,7 +33,9 @@ Because the experience is built around a fantasy quest, the world includes locat
 - ruined bridge or platforming section  
 - trial arena with moving or elevated surfaces  
 - castle gate courtyard (progression checkpoint)  
-- boss arena or ritual space beyond the gate 
+- boss arena or ritual space beyond the gate
+
+--
 <img width="800" height="450" alt="Screenshot 2026-04-08 233409" src="https://github.com/user-attachments/assets/52c538e7-425c-4ab7-9c8e-c7c38da20b9d" />
 
 ---
@@ -43,6 +45,7 @@ Because the experience is built around a fantasy quest, the world includes locat
 - floating platforms, pickup objects (stones or magical orbs)  
 - a central weak-point object in the final arena  
 
+--
 <img width="702" height="588" alt="Screenshot 2026-04-08 233803" src="https://github.com/user-attachments/assets/3e243ba5-65e5-4503-a928-712f408a92b9" />
 
 ---
