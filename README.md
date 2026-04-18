@@ -23,7 +23,7 @@ The purpose of the user being in the environment is straightforward: they are an
 Because the experience is built around a fantasy quest, the world includes locations that feel mysterious, ancient, and slightly dangerous.
 
 --
-<img width="650" height="300" alt="Screenshot 2026-04-08 233721" src="https://github.com/user-attachments/assets/8e639710-1559-4633-a2cb-ba5a0a698c3d" />
+<img width="600" height="400" alt="Screenshot 2026-04-08 233721" src="https://github.com/user-attachments/assets/8e639710-1559-4633-a2cb-ba5a0a698c3d" />
 
 
 ---
