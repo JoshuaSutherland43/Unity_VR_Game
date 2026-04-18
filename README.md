@@ -23,7 +23,7 @@ The purpose of the user being in the environment is straightforward: they are an
 Because the experience is built around a fantasy quest, the world includes locations that feel mysterious, ancient, and slightly dangerous.
 
 --
-<img width="600" height="400" alt="Screenshot 2026-04-08 233721" src="https://github.com/user-attachments/assets/8e639710-1559-4633-a2cb-ba5a0a698c3d" />
+<img width="800" height="450" alt="Screenshot 2026-04-08 233721" src="https://github.com/user-attachments/assets/8e639710-1559-4633-a2cb-ba5a0a698c3d" />
 
 
 ---
@@ -46,7 +46,7 @@ Because the experience is built around a fantasy quest, the world includes locat
 - a central weak-point object in the final arena  
 
 --
-<img width="702" height="588" alt="Screenshot 2026-04-08 233803" src="https://github.com/user-attachments/assets/3e243ba5-65e5-4503-a928-712f408a92b9" />
+<img width="800" height="450" alt="Screenshot 2026-04-08 233803" src="https://github.com/user-attachments/assets/3e243ba5-65e5-4503-a928-712f408a92b9" />
 
 ---
 ## ✨ What Makes the Theme Interesting
